@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>something..</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Inter, sans-serif;
+                font-weight: 600;
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .message {
+                text-align: center;
+                font-size: 26px;
+                font-weight: 650;
+                letter-spacing: -0.2px;
+                line-height: 34px;
+                word-wrap: break-word;
+                white-space: normal;
+                max-width: 80%;
+            }
+
+            .image img {
+                margin-bottom: 4px;
+                max-width: 100%;
+                height: auto;
+                max-height: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="image">
+                <img src="19620_251a166cc8330c6a051ff319a645b81c.gif" />
+            </div>
+            <div class="message" id="message">
+                something is cookin here, but..
+            </div>
+        </div>
+
+        <script>
+            const messages = [
+                "what a beautiful day!",
+                "something is cookin' here, but...",
+                "are you?",
+                "just chillin, what's up?",
+                "hi, fren!",
+                "????!>?...?R<",
+                "broken!!!",
+                "interrr..rrup...",
+            ];
+
+            const randomMessage =
+                messages[Math.floor(Math.random() * messages.length)];
+
+            const messageElement = document.getElementById("message");
+            messageElement.innerText = randomMessage;
+
+            Telegram.WebApp.onEvent("themeChanged", () => {
+                const theme = Telegram.WebApp.themeParams;
+                const backgroundColor = theme.bg_color;
+                const textColor = theme.text_color;
+                document.body.style.backgroundColor = backgroundColor;
+                messageElement.style.color = textColor;
+            });
+
+            Telegram.WebApp.init();
+        </script>
+    </body>
+</html>
